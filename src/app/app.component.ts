@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  activeLink = 'songs';
   title = 'VBI-Music';
 }

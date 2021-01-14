@@ -1,0 +1,19 @@
+.search-form{
+    display: flex;
+    justify-content: space-between;
+    width: 320px;
+}
+
+.searchBtn{
+    height: 40px;
+}
+
+.song-card{
+    display: block;
+    margin: 8px 0px;
+}
+
+.back-section{
+    display: flex;
+    justify-content: flex-end;
+}

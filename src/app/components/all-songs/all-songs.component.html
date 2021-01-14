@@ -1,0 +1,10 @@
+<mat-paginator [length]="songCount"
+              [pageSize]="10"
+              [pageSizeOptions]="[10, 25, 100]"
+              (page)="pageEvent($event)">
+</mat-paginator>
+
+<app-song class="song-card" *ngFor="let song of songs" [song]="song"></app-song>
+
+
+

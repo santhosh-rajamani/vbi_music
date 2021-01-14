@@ -1,0 +1,16 @@
+<mat-card class="song-card">
+    <mat-card-header>
+        <div mat-card-avatar class="header-image" [style.background-image]="'url(' + song.thumbNail + ')'"></div>
+        <mat-card-title>{{song.name}}</mat-card-title>
+        <mat-card-subtitle>{{song.albumName}}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <p>
+          Singers: {{song.singers}}
+        </p>
+      </mat-card-content>
+      <!-- <mat-card-actions>
+        <button mat-button>LIKE</button>
+        <button mat-button>SHARE</button>
+      </mat-card-actions> -->
+</mat-card>

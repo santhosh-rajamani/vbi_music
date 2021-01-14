@@ -1,0 +1,8 @@
+
+
+<button mat-raised-button (click)="addNewPlayList()">
+    <mat-icon>add</mat-icon>
+    Create New Playlist
+</button>
+
+<app-playlist class="playlist-card" *ngFor="let playlist of playlists" [playlist]="playlist"></app-playlist>
