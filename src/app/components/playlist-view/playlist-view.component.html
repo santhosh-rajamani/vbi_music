@@ -1,19 +1,22 @@
 
 <form class="search-form">
-<mat-form-field class="example-full-width">
-    <input type="text"
-           placeholder="Type your song here..."
-           aria-label="Number"
-           matInput
-           [formControl]="searchControl"
-           [matAutocomplete]="auto">
-    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" [displayWith]="displayFn" (optionSelected)='selectSong($event.option.value)'>
-      <mat-option *ngFor="let song of filteredSongs" [value]="song">
-        {{song.name}}
-      </mat-option>
-    </mat-autocomplete>
-</mat-form-field>
-<button class="searchBtn" mat-raised-button (click)="addNewSong()">Add this Song</button>
+    <div class="search-area">
+        <mat-form-field class="example-full-width">
+            <input type="text"
+                placeholder="Type your song here..."
+                aria-label="Number"
+                matInput
+                [formControl]="searchControl"
+                [matAutocomplete]="auto">
+            <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" [displayWith]="displayFn" (optionSelected)='selectSong($event.option.value)'>
+            <mat-option *ngFor="let song of filteredSongs" [value]="song">
+                {{song.name}}
+            </mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+        <button class="search-button" mat-raised-button (click)="addNewSong()">Add this Song</button>
+    </div>
+    <button class="shuffle-button" mat-raised-button (click)="shuffleSongs()">Shuffle Playlist</button>
 </form>
 <app-song class="song-card"
     *ngFor="let song of playlistSongs" [song]="song"></app-song>

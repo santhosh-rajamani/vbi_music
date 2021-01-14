@@ -58,4 +58,9 @@ export class PlaylistViewComponent implements OnInit {
       this.searchControl.reset();
     }
   }
+
+  shuffleSongs(){
+    this.playlistService.shufflePlayList(this.id)
+    this.refreshSongs()
+  }
 }

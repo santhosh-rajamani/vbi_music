@@ -1,10 +1,15 @@
 .search-form{
     display: flex;
     justify-content: space-between;
-    width: 320px;
 }
 
-.searchBtn{
+.search-area{
+    display: flex;
+    width: 320px;
+    justify-content: space-between;
+}
+
+.search-button{
     height: 40px;
 }
 
@@ -16,4 +21,8 @@
 .back-section{
     display: flex;
     justify-content: flex-end;
+}
+
+.shuffle-button{
+    height: 40px;
 }

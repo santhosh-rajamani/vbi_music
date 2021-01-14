@@ -37,7 +37,21 @@ export class PlaylistsService {
   }
 
   addSongToPlayList(playlistId: number, song: song) {
-    this.playlists.find((playlist) => playlist.id === playlistId).songs.push(song);
+    let songs = this.playlists.find((playlist) => playlist.id === playlistId).songs;
+    if(songs.find((thisSong) => thisSong.id === song.id)){
+      // Skip the song if already exists
+    } else {
+      songs.push(song);
+    }
+  }
+
+  shufflePlayList(playlistId: number){
+    let array = this.playlists.find((playlist) => playlist.id === playlistId).songs;
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    this.playlists.find((playlist) => playlist.id === playlistId).songs = array;
   }
 
 }
