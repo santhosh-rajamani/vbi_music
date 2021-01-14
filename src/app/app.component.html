@@ -1,15 +1,9 @@
 <nav mat-tab-nav-bar backgroundColor="primary">
+  <a mat-tab-link style="font-size: 20px;"><mat-icon>queue_music</mat-icon>&nbsp;VBI Music</a>
   <a mat-tab-link routerLink="songs" (click)="activeLink = 'songs'" [active]="activeLink == 'songs'">Songs</a>
   <a mat-tab-link routerLink="playlists" (click)="activeLink = 'playlists'" [active]="activeLink == 'playlists'" >Playlists</a>
-  <!-- <a mat-tab-link *ngFor="let link of links"
-     (click)="activeLink = link"
-     [active]="activeLink == link"> {{link}} </a> -->
 </nav>
 
 <mat-card>
   <router-outlet></router-outlet>
 </mat-card>
-
-
-
-<!-- <app-all-songs></app-all-songs> -->
