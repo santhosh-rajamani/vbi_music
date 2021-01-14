@@ -31,7 +31,6 @@ export class PlaylistViewComponent implements OnInit {
     this.searchControl.valueChanges.pipe(
       debounceTime(500)
     ).subscribe(searchKey => {
-      console.log('Heyyy')
       this.filteredSongs = this.songService.filterSongsByName(searchKey, 10);
     });
 

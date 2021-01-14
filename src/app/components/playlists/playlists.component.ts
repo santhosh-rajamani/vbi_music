@@ -27,7 +27,6 @@ export class PlaylistsComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((name: string) => {
       if(name && name != '') {
-        console.log('The dialog was closed');
         this.playlistService.addNewPlayList(name);
         this.refreshPlaylist();
       }
