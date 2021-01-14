@@ -9,7 +9,12 @@ export class PlaylistsService {
 
   playlists: playlist[] = []
 
-  constructor() { }
+  constructor() { 
+    var cachedPlaylists = JSON.parse(localStorage.getItem('playList'));
+    if(cachedPlaylists){
+      this.playlists = cachedPlaylists;
+    }
+  }
 
   getPlayLists() {
     return this.playlists;
@@ -17,6 +22,10 @@ export class PlaylistsService {
 
   getPlayList(id: number){
     return this.playlists.find((playlist) => playlist.id === id);
+  }
+
+  private cachePlayList(){
+    localStorage.setItem('playList', JSON.stringify(this.playlists));
   }
 
   private getPlayListId(){
@@ -33,7 +42,8 @@ export class PlaylistsService {
       name: name,
       createdAt: new Date(),
       songs: []
-    })
+    });
+    this.cachePlayList();
   }
 
   addSongToPlayList(playlistId: number, song: song) {
@@ -43,6 +53,7 @@ export class PlaylistsService {
     } else {
       songs.push(song);
     }
+    this.cachePlayList();
   }
 
   shufflePlayList(playlistId: number){
