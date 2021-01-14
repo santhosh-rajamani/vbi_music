@@ -1,4 +1,26 @@
+.clear-search-area{
+    display: flex;
+    align-items: center;
+    width: 360px;
+    justify-content: space-between;
+    padding: 8px;
+}
+
 .song-card{
     display: block;
     margin: 8px 0px;
+}
+
+.search-area{
+    width: 500px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.search-input{
+    width: 400px;
+}
+
+.search-button{
+    height: 40px;
 }

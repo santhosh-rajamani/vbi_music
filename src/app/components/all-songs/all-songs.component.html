@@ -1,10 +1,24 @@
+
+<div class="search-area">
+    <mat-form-field class="search-input">
+        <mat-label>Search key</mat-label>
+        <input placeholder="Search by song name or album.." matInput [(ngModel)]="searchKey"/>
+    </mat-form-field>
+    <button class="search-button" mat-raised-button (click)="searchAdvanced()">Search</button>
+</div>
+
+<div *ngIf="isSearchResults" class="clear-search-area">
+    <div>Showing search results for '{{searchKey}}'... </div>
+    <button mat-raised-button (click)="clearSearch()">Clear Search</button>
+</div>
+
+<app-song class="song-card" *ngFor="let song of songs" [song]="song"></app-song>
+
 <mat-paginator [length]="songCount"
-              [pageSize]="10"
+              [pageSize]="pageSize"
               [pageSizeOptions]="[10, 25, 100]"
               (page)="pageEvent($event)">
 </mat-paginator>
-
-<app-song class="song-card" *ngFor="let song of songs" [song]="song"></app-song>
 
 
 

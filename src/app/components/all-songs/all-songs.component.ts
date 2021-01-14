@@ -1,5 +1,8 @@
+import { OnDestroy, ViewChild } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
-import { PageEvent } from '@angular/material/paginator';
+import { FormControl } from '@angular/forms';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { Subscription } from 'rxjs';
 import { song } from 'src/app/models/songs.models';
 import { SongsService } from 'src/app/services/songs.service';
 
@@ -8,18 +11,57 @@ import { SongsService } from 'src/app/services/songs.service';
   templateUrl: './all-songs.component.html',
   styleUrls: ['./all-songs.component.css']
 })
-export class AllSongsComponent implements OnInit {
+export class AllSongsComponent implements OnInit, OnDestroy {
 
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+
+  isSearchResults = false;
+  searchControl = new FormControl();
+  searchKey = "";
+
+  songs: song[] = [];
   songCount: number = 0;
+  pageSize: number = 10;
+  // subscriptions: Subscription[] = [];
+  subscription: Subscription = null;
+
   constructor(private songsService: SongsService) { }
 
-  
-
   ngOnInit(): void {
-    this.songsService.getAllSongs().subscribe((songList) => {
+   this.getAllSongs()
+  }
+
+  getAllSongs(){
+    if(this.subscription) {
+      this.subscription.unsubscribe();
+    }
+    this.subscription = this.songsService.getAllSongs().subscribe((songList) => {
       this.songCount = songList.length;
+      this.paginator.pageIndex = 0;
       this.songs = this.songsService.getSongs(1, 10);
     });
+    
+  }
+
+  clearSearch(){
+    this.searchKey = "";
+    this.isSearchResults = false;
+    this.getAllSongs();
+  }
+
+  searchAdvanced(){
+    this.isSearchResults = true;
+    this.pageSize = 10; //resetting
+    this.getAllSongs();
+    if(this.subscription) {
+      this.subscription.unsubscribe();
+    }
+    this.subscription = this.songsService.searchForSongs(this.searchKey).subscribe((songList) => {
+      this.songCount = songList.length;
+      this.paginator.pageIndex = 0;
+      this.songs = this.songsService.getSongs(1, 10);
+    });
+    // subscription.unsubscribe();
   }
 
   pageEvent(event: PageEvent){
@@ -28,6 +70,8 @@ export class AllSongsComponent implements OnInit {
     this.songs = this.songsService.getSongs(startIndex, endIndex);
   }
 
-  songs: song[] = [];
+  ngOnDestroy() {
+    // this.subscriptions.forEach((subscription) => subscription.unsubscribe());
+  }
 
 }
