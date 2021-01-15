@@ -5,4 +5,4 @@
     Create New Playlist
 </button>
 
-<app-playlist class="playlist-card" *ngFor="let playlist of playlists" [playlist]="playlist"></app-playlist>
+<app-playlist class="playlist-card" *ngFor="let playlist of playlists" [playlist]="playlist" (playlistRemoved)="removePlaylist($event)"></app-playlist>

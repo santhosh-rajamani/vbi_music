@@ -50,6 +50,9 @@ export class AllSongsComponent implements OnInit, OnDestroy {
   }
 
   searchAdvanced(){
+    if(this.searchKey === '') {
+      return;
+    }
     this.isSearchResults = true;
     this.pageSize = 10; //resetting
     this.getAllSongs();

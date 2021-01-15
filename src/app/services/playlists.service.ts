@@ -65,4 +65,9 @@ export class PlaylistsService {
     this.playlists.find((playlist) => playlist.id === playlistId).songs = array;
   }
 
+  removePlaylist(playlistId: number){
+    this.playlists = this.playlists.filter(item => item.id !== playlistId);
+    this.cachePlayList();
+  }
+
 }

@@ -33,6 +33,11 @@ export class PlaylistsComponent implements OnInit {
     });
   }
 
+  removePlaylist(value): void{
+    this.playlistService.removePlaylist(value);
+    this.refreshPlaylist();
+  }
+
   ngOnInit(): void {
     this.refreshPlaylist()
   }
