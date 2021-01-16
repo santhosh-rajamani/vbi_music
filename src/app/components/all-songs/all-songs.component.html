@@ -12,17 +12,18 @@
     <button mat-raised-button (click)="clearSearch()">Clear Search</button>
 </div>
 
-<!-- <div>
-<mat-spinner></mat-spinner>
-</div> -->
+<div class="loader-area" [hidden]="!isLoading">
+    <mat-spinner></mat-spinner>
+</div>
 
-<app-song class="song-card" *ngFor="let song of songs" [song]="song"></app-song>
+<div class="data-area" [hidden]="isLoading">
+    <app-song class="song-card" *ngFor="let song of songs" [song]="song"></app-song>
 
-<mat-paginator [length]="songCount"
-              [pageSize]="pageSize"
-              [pageSizeOptions]="[10, 25, 100]"
-              (page)="pageEvent($event)">
-</mat-paginator>
-
+    <mat-paginator [length]="songCount"
+                [pageSize]="pageSize"
+                [pageSizeOptions]="[10, 25, 100]"
+                (page)="pageEvent($event)">
+    </mat-paginator>
+</div>
 
 

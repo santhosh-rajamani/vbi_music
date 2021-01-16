@@ -25,6 +25,8 @@ export class AllSongsComponent implements OnInit, OnDestroy {
   // subscriptions: Subscription[] = [];
   subscription: Subscription = null;
 
+  isLoading: boolean = false;
+
   constructor(private songsService: SongsService) { }
 
   ngOnInit(): void {
@@ -32,6 +34,7 @@ export class AllSongsComponent implements OnInit, OnDestroy {
   }
 
   getAllSongs(){
+    this.isLoading = true;
     if(this.subscription) {
       this.subscription.unsubscribe();
     }
@@ -39,8 +42,8 @@ export class AllSongsComponent implements OnInit, OnDestroy {
       this.songCount = songList.length;
       this.paginator.pageIndex = 0;
       this.songs = this.songsService.getSongs(1, 10);
+      this.isLoading = false;
     });
-    
   }
 
   clearSearch(){
@@ -53,6 +56,7 @@ export class AllSongsComponent implements OnInit, OnDestroy {
     if(this.searchKey === '') {
       return;
     }
+    this.isLoading = true;
     this.isSearchResults = true;
     this.pageSize = 10; //resetting
     this.getAllSongs();
@@ -63,6 +67,7 @@ export class AllSongsComponent implements OnInit, OnDestroy {
       this.songCount = songList.length;
       this.paginator.pageIndex = 0;
       this.songs = this.songsService.getSongs(1, 10);
+      this.isLoading = false;
     });
     // subscription.unsubscribe();
   }

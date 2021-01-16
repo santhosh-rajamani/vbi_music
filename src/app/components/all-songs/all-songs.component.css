@@ -1,3 +1,7 @@
+[hidden] {
+    display: none !important;
+}
+
 .clear-search-area{
     display: flex;
     align-items: center;
@@ -23,4 +27,15 @@
 
 .search-button{
     height: 40px;
+}
+
+.loader-area{
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    width: 100%;
+    height: calc(100% - 108px);
+    z-index: 1;
 }
