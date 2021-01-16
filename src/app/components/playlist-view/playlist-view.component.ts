@@ -7,6 +7,8 @@ import { PlaylistsService } from 'src/app/services/playlists.service';
 import { SongsService } from 'src/app/services/songs.service';
 import { debounceTime, map, switchMap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmationDialog } from '../dialogs/confirmation-dialog';
 
 @Component({
   selector: 'app-playlist-view',
@@ -22,7 +24,7 @@ export class PlaylistViewComponent implements OnInit {
   selectedSong: song;
   searchControl = new FormControl();
 
-  constructor(private route: ActivatedRoute, private playlistService: PlaylistsService, private songService: SongsService) { }
+  constructor(private route: ActivatedRoute, private playlistService: PlaylistsService, private songService: SongsService,  private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.id = +this.route.snapshot.paramMap.get('id');
@@ -57,6 +59,20 @@ export class PlaylistViewComponent implements OnInit {
       this.selectedSong = null;
       this.searchControl.reset();
     }
+  }
+
+  removeSongFromPlaylist(value: number){
+    const dialogRef = this.dialog.open(ConfirmationDialog, {
+      width: '340px',
+      data: {text: 'Are you sure you want to remove this song from playlist?'}
+    });
+
+    dialogRef.afterClosed().subscribe((result: boolean) => {
+      if(result){ 
+        this.playlistService.removeSongFromPlaylist(this.id, value);
+        this.refreshSongs();
+      }
+    });
   }
 
   shuffleSongs(){

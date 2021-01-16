@@ -1,6 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { playlist } from 'src/app/models/playlist.models';
+import { ConfirmationDialog } from '../dialogs/confirmation-dialog';
 
 @Component({
   selector: 'app-playlist',

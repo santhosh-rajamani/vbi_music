@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { playlist } from 'src/app/models/playlist.models';
 import { PlaylistsService } from 'src/app/services/playlists.service';
 import { AddPlayListDialog } from '../dialogs/add-playlist.dialog';
+import { ConfirmationDialog } from '../dialogs/confirmation-dialog';
 
 @Component({
   selector: 'app-playlists',
@@ -34,8 +35,17 @@ export class PlaylistsComponent implements OnInit {
   }
 
   removePlaylist(value): void{
-    this.playlistService.removePlaylist(value);
-    this.refreshPlaylist();
+    const dialogRef = this.dialog.open(ConfirmationDialog, {
+      width: '340px',
+      data: {text: 'Are you sure you want to delete this playlist?'}
+    });
+
+    dialogRef.afterClosed().subscribe((result: boolean) => {
+      if(result){ 
+        this.playlistService.removePlaylist(value);
+        this.refreshPlaylist();
+      }
+    });
   }
 
   ngOnInit(): void {

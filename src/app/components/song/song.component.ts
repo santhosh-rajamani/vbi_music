@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { song } from 'src/app/models/songs.models';
 
 @Component({
@@ -11,9 +11,23 @@ export class SongComponent implements OnInit {
   @Input()
   song: song;
 
+  isDeletable: Boolean = false;
+
+  @Input()
+  removable: Boolean = false;
+
+  @Output() songRemoved = new EventEmitter<number>();
+
+
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  deleteSong(e: Event, id: number){
+    this.songRemoved.emit(id);
+    e.stopPropagation();
   }
 
 }

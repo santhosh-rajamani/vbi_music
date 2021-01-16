@@ -19,7 +19,7 @@
     <button class="shuffle-button" mat-raised-button (click)="shuffleSongs()">Shuffle Playlist</button>
 </form>
 <app-song class="song-card"
-    *ngFor="let song of playlistSongs" [song]="song"></app-song>
+    *ngFor="let song of playlistSongs" [song]="song" [removable]="true" (songRemoved)="removeSongFromPlaylist($event)"></app-song>
 
 <div class="back-section">
     <button mat-button routerLink="/playlists">

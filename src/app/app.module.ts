@@ -22,6 +22,9 @@ import {MatInputModule} from '@angular/material/input';
 import { PlaylistViewComponent } from './components/playlist-view/playlist-view.component';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatIconModule} from '@angular/material/icon';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { ConfirmationDialog } from './components/dialogs/confirmation-dialog';
 
 @NgModule({
   declarations: [
@@ -31,7 +34,8 @@ import {MatIconModule} from '@angular/material/icon';
     SongComponent,
     PlaylistComponent,
     AddPlayListDialog,
-    PlaylistViewComponent
+    PlaylistViewComponent,
+    ConfirmationDialog
   ],
   imports: [
     BrowserModule,
@@ -49,7 +53,9 @@ import {MatIconModule} from '@angular/material/icon';
     MatInputModule,
     MatAutocompleteModule,
     ReactiveFormsModule,
-    MatIconModule
+    MatIconModule,
+    MatProgressSpinnerModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

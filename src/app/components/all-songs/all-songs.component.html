@@ -1,8 +1,8 @@
 
 <div class="search-area">
     <mat-form-field class="search-input">
-        <mat-label>Search key</mat-label>
-        <input placeholder="Search by song name or album.." matInput [(ngModel)]="searchKey"/>
+        <mat-label>Search song..</mat-label>
+        <input placeholder="Search by typing song name or album.." matInput [(ngModel)]="searchKey"/>
     </mat-form-field>
     <button class="search-button" mat-raised-button (click)="searchAdvanced()">Search</button>
 </div>
@@ -11,6 +11,10 @@
     <div>Showing search results for '{{searchKey}}'... </div>
     <button mat-raised-button (click)="clearSearch()">Clear Search</button>
 </div>
+
+<!-- <div>
+<mat-spinner></mat-spinner>
+</div> -->
 
 <app-song class="song-card" *ngFor="let song of songs" [song]="song"></app-song>
 

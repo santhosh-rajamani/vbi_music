@@ -1,7 +1,14 @@
 .header-image {
-    background-size: cover;
-  }
+  background-size: cover;
+}
 
-  .song-card{
-    background-color: #d3d3d338;
-  }
+.song-card{
+  background-color: #d3d3d338;
+}
+
+.card-content{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 16px;
+}
